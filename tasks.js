@@ -13,6 +13,38 @@ function task_2 (a1, a2) {
     return array1 == array2 ? true : false;
 }
 
+function task_3 (array) {
+    const resultArr = [];
+    array.forEach(element => {
+        const tempElement = resultArr.find((el) => element.id === el.id);
+
+        if (tempElement) {
+            if (tempElement === element) {
+                return;
+            } else {
+                const typeProperty = typeof element.value;
+                setProperty(tempElement, typeProperty)
+            }
+        } else {
+            const typeProperty = typeof element.value;
+            const newObj = {
+                id: element.id,
+                number: 0,
+                string: 0
+            }
+
+            setProperty(newObj, typeProperty);
+            resultArr.push(newObj);
+        }
+    });
+
+    function setProperty(tempObj, typeProperty) {
+        tempObj[typeProperty]++;
+    }
+
+    return resultArr;
+}
+
 function task_4 (array) {
     const sumOfEvenNumbers = array.filter(number => number % 2 == 0).reduce((a, b) => a + b);
     const sumOfOddNumbers = array.filter(number => number % 2 !== 0).reduce((a, b) => a + b);
@@ -90,7 +122,8 @@ function task_10 (str, number) {
 
 module.exports = { 
     task_1, 
-    task_2, 
+    task_2,
+    task_3, 
     task_4, 
     task_5, 
     task_6, 
